@@ -67,7 +67,7 @@ class ProductsController extends Controller
         if (is_null($product)) {
             return response()->json(['error' => true, 'message' => 'object not found'], 404);
         }
-        $product->update($req->all());
+        $product->update(['title' => $req->title, 'imageUrl' => $req->imageUrl, 'content' => $req->contentSet]);
         return response()->json($product, 200);
     }
 }
