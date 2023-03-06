@@ -12,11 +12,6 @@ class ProductsController extends Controller
 {
     public function products()
     {
-        try {
-            $user = auth()->userOrFail();
-        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
-            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
-        }
         $array = Products::all();
         $data_1 = collect($array)->all();
 
@@ -45,11 +40,6 @@ class ProductsController extends Controller
 
     public function productById($id)
     {
-        try {
-            $user = auth()->userOrFail();
-        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
-            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
-        }
         $post = Products::find($id);
         if (is_null($post)) {
             return response()->json(['error' => true, 'message' => 'object not found'], 404);

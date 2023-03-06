@@ -13,11 +13,6 @@ class PostsController extends Controller
 {
     public function posts()
     {
-        try {
-            $user = auth()->userOrFail();
-        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
-            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
-        }
         $array = Posts::all();
         $data_1 = collect($array)->all();
 
@@ -26,11 +21,6 @@ class PostsController extends Controller
 
     public function postById($id)
     {
-        try {
-            $user = auth()->userOrFail();
-        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
-            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
-        }
         $post = Posts::find($id);
         if (is_null($post)) {
             return response()->json(['error' => true, 'message' => 'object not found'], 404);
