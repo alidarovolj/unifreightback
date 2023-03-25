@@ -30,6 +30,7 @@ Route::get('products/{id}', 'App\Http\Controllers\Api\Products\ProductsControlle
 Route::get('products', 'App\Http\Controllers\Api\Products\ProductsController@products');
 Route::get('posts', 'App\Http\Controllers\Api\Posts\PostsController@posts');
 Route::get('posts/{id}', 'App\Http\Controllers\Api\Posts\PostsController@postById');
+Route::post('postSave', 'App\Http\Controllers\Api\Posts\PostsController@postSave');
 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('allUsers', 'App\Http\Controllers\Api\User\UserController@allUsers');
@@ -37,7 +38,6 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::put('updateUserInfo', 'App\Http\Controllers\Api\User\UserController@updateUserInfo');
     Route::get('user', 'App\Http\Controllers\Api\User\UserController@userData');
 
-    Route::post('postSave', 'App\Http\Controllers\Api\Posts\PostsController@postSave');
     Route::put('posts/{post}', 'App\Http\Controllers\Api\Posts\PostsController@postEdit');
     Route::delete('posts/{post}', 'App\Http\Controllers\Api\Posts\PostsController@postRemove');
 

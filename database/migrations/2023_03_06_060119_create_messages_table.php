@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->longText('name');
             $table->longText('email');
-            $table->longText('subject');
+            $table->longText('type');
             $table->longText('phone');
             $table->timestamps();
         });

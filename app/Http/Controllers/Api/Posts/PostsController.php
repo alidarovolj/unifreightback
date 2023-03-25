@@ -30,11 +30,6 @@ class PostsController extends Controller
 
     public function postSave(Request $request)
     {
-        try {
-            $user = auth()->userOrFail();
-        } catch (\Tymon\JWTAuth\Exceptions\UserNotDefinedException $e) {
-            return response()->json(['error' => true, 'message' => $e->getMessage()], 401);
-        }
         $rules = [
             'title' => 'required|min:3',
             'imageUrl' => 'required|min:2',
@@ -44,7 +39,7 @@ class PostsController extends Controller
         if ($validator->fails()) {
             return response()->json(['success' => false, $validator->errors()], 400);
         }
-        $post = Posts::create(['title' => $request->title, 'imageUrl' => $request->imageUrl, 'content' => $request->contentSet, 'user_id' => auth()->user()->id]);
+        $post = Posts::create(['title' => $request->title, 'imageUrl' => $request->imageUrl, 'content' => $request->contentSet]);
         return response()->json(['success' => true, $post], 201);
     }
 
