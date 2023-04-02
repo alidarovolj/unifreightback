@@ -21,11 +21,12 @@ class PostsController extends Controller
 
     public function postById($id)
     {
-        $post = Posts::find($id);
+        $column = 'url';
+        $post = Posts::where($column ,  "=", $id)->first();
         if (is_null($post)) {
             return response()->json(['error' => true, 'message' => 'object not found'], 404);
         }
-        return response()->json(Posts::find($id), 200);
+        return response()->json(Posts::where($column,  "=", $id)->first(), 200);
     }
 
     public function postSave(Request $request)
