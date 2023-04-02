@@ -33,13 +33,14 @@ class PostsController extends Controller
         $rules = [
             'title' => 'required|min:3',
             'imageUrl' => 'required|min:2',
-            'contentSet' => 'required|min:2'
+            'contentSet' => 'required|min:2',
+            'url' => 'required'
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
             return response()->json(['success' => false, $validator->errors()], 400);
         }
-        $post = Posts::create(['title' => $request->title, 'imageUrl' => $request->imageUrl, 'content' => $request->contentSet]);
+        $post = Posts::create(['title' => $request->title, 'imageUrl' => $request->imageUrl, 'content' => $request->contentSet, 'url' => $request->url]);
         return response()->json(['success' => true, $post], 201);
     }
 
@@ -53,7 +54,8 @@ class PostsController extends Controller
         $rules = [
             'title' => 'required|min:3',
             'imageUrl' => 'required|min:2',
-            'contentSet' => 'required|min:2'
+            'contentSet' => 'required|min:2',
+            'url' => 'required'
         ];
         $validator = Validator::make($req->all(), $rules);
         if ($validator->fails()) {
