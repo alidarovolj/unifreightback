@@ -13,7 +13,6 @@ class Message extends Mailable
     use Queueable, SerializesModels;
     public $email;
     public $name;
-    public $type;
     public $phone;
     /**
      * Create a new message instance.
@@ -24,7 +23,6 @@ class Message extends Mailable
     {
         $this->email = $email;
         $this->name = $name;
-        $this->type = $type;
         $this->phone = $phone;
     }
     /**
@@ -34,7 +32,7 @@ class Message extends Mailable
      */
     public function build()
     {
-        return $this->subject('Заявка с CREOAD')
+        return $this->subject('Заявка с Unifreight')
             ->markdown('emails.messages');
     }
 }

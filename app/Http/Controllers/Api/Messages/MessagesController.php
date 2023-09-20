@@ -29,7 +29,6 @@ class MessagesController extends Controller
         $rules = [
             'name' => 'required',
             'email' => 'required',
-            'type' => 'required',
             'phone' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
@@ -41,7 +40,7 @@ class MessagesController extends Controller
         $type = $request->type;
         $phone = $request->phone;
         Mail::to("oljasalidarov@gmail.com")->send(new Message($email, $name, $type, $phone));
-        $message = Messages::create(['name' => $request->name, 'email' => $request->email, 'type' => $request->type, 'phone' => $request->phone]);
-        return response()->json(['success' => true, $message], 201);
+        $message = Messages::create(['name' => $request->name, 'email' => $request->email, 'type' => 'no-type', 'phone' => $request->phone]);
+        return response()->json(['success' => true, $message], 200);
     }
 }
