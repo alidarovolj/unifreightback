@@ -43,7 +43,16 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
+            'verify_peer' => false,
         ],
+
+//        'stream' => [
+//            'ssl' => [
+//                'allow_self_signed' => true,
+//                'verify_peer' => false,
+//                'verify_peer_name' => false,
+//            ],
+//        ],
 
         'ses' => [
             'transport' => 'ses',
